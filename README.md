@@ -1,3 +1,4 @@
+
 Code Review Assistant 🤖
 An AI-powered web application that automatically reviews source code files. It analyzes the code for readability, modularity, potential bugs, and adherence to best practices, providing actionable suggestions for improvement.
 
@@ -74,3 +75,6 @@ Wait a few moments for the AI to analyze the code.
 The detailed review report will appear on the page.
 
 This project is for educational and demonstration purposes.
+
+# Code-Review-Assistant
+8ebff29cf1aa7f160f611dc6030684dc80dfdc6c
