@@ -1,0 +1,325 @@
+2025-10-14 22:25:03,408 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:25:03,408 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:25:19,808 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:26:21,960 - app.routers.review - INFO - Code review completed for submission.py in 62152ms
+2025-10-14 22:28:02,230 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:28:05,738 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:28:05,739 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:28:06,542 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:28:08,559 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:28:08,559 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:28:08,580 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:28:10,245 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:28:10,246 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:28:10,919 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:28:12,252 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:28:12,253 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:28:24,085 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:28:59,971 - app.services.reviewer - WARNING - Skipping invalid issue data: 'Efficiency' is not a valid Category
+2025-10-14 22:28:59,972 - app.routers.review - INFO - Code review completed for submission.py in 35887ms
+2025-10-14 22:29:58,737 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:30:04,913 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:30:04,913 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:30:17,792 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:31:16,875 - app.routers.review - INFO - Code review completed for submission.py in 59081ms
+2025-10-14 22:33:26,967 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:33:30,023 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:33:30,023 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:37:12,571 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:37:16,420 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:37:16,420 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:37:28,651 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:38:24,022 - app.routers.review - INFO - Code review completed for submission.py in 55371ms
+2025-10-14 22:41:58,873 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:43:29,122 - app.routers.review - INFO - Code review completed for submission.py in 90248ms
+2025-10-14 22:44:44,853 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:44:47,892 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:44:47,893 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:45:26,902 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:45:28,064 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:45:28,064 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:45:35,827 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:45:37,158 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:45:37,158 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:47:48,027 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:47:48,027 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:48:46,413 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:48:46,414 - app.services.reviewer - INFO - Starting review for submission.py, content length: 2645
+2025-10-14 22:48:46,414 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 22:48:46,414 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 22:49:11,643 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:49:11,644 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:49:27,463 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:49:27,463 - app.services.reviewer - INFO - Starting review for submission.py, content length: 2645
+2025-10-14 22:49:27,464 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 22:49:27,464 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 22:49:38,762 - app.services.reviewer - INFO - Received response from Gemini, length: 10891
+2025-10-14 22:49:38,763 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The code implements a Gaussian Process Regressor (GPR) based optimization strategy, combining a coarse grid search with `differential_evolution` to find ...
+2025-10-14 22:49:38,763 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 22:49:38,763 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 22:49:38,764 - app.routers.review - INFO - Code review completed for submission.py in 52351ms
+2025-10-14 22:50:52,319 - app.services.reviewer - INFO - Received response from Gemini, length: 13832
+2025-10-14 22:50:52,320 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The code implements a Gaussian Process Regressor to model a 3D surface (x, y, z) and then efficiently identifies the global maximum of 'z' within a defin...
+2025-10-14 22:50:52,320 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 22:50:52,320 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 22:50:52,321 - app.routers.review - INFO - Code review completed for submission.py in 84857ms
+2025-10-14 22:50:52,436 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:50:55,555 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:50:55,555 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:52:15,619 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:52:23,933 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:52:23,934 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:52:25,700 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 22:52:50,758 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:52:50,758 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:53:49,433 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:53:49,433 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:54:00,963 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:54:00,963 - app.services.reviewer - INFO - Starting review for submission.py, content length: 2645
+2025-10-14 22:54:00,963 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 22:54:00,963 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 22:55:27,037 - app.services.reviewer - INFO - Received response from Gemini, length: 11061
+2025-10-14 22:55:27,038 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The code implements a Gaussian Process Regressor to fit data and then uses a combination of grid search and differential evolution to find the peak of th...
+2025-10-14 22:55:27,038 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 22:55:27,040 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 22:55:27,040 - app.routers.review - INFO - Code review completed for submission.py in 86078ms
+2025-10-14 22:56:57,487 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:56:57,489 - app.services.reviewer - INFO - Starting review for submission.py, content length: 2645
+2025-10-14 22:56:57,490 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 22:56:57,491 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 22:57:32,752 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 22:57:32,753 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 22:57:41,954 - app.routers.review - INFO - Starting code review for file: submission.py (2645 characters)
+2025-10-14 22:57:41,955 - app.services.reviewer - INFO - Starting review for submission.py, content length: 2645
+2025-10-14 22:57:41,955 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 22:57:41,956 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 22:58:16,260 - app.services.reviewer - INFO - Received response from Gemini, length: 13013
+2025-10-14 22:58:16,261 - app.services.reviewer - INFO - Cleaned text preview: {
+    "language": "Python",
+    "overallSummary": "The code implements a Gaussian Process Regressor for surface modeling and uses differential evolution to find the global maximum within a defined ran...
+2025-10-14 22:58:16,261 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 22:58:16,261 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 22:58:16,261 - app.routers.review - INFO - Code review completed for submission.py in 78773ms
+2025-10-14 22:58:50,381 - app.services.reviewer - INFO - Received response from Gemini, length: 12031
+2025-10-14 22:58:50,384 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The code implements a Gaussian Process Regressor model to find a peak 'z' value within a 2D 'x, y' space using a combination of grid search and different...
+2025-10-14 22:58:50,385 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 22:58:50,386 - app.services.reviewer - WARNING - Skipping invalid issue data: 'Maintainability' is not a valid Category
+2025-10-14 22:58:50,387 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 22:58:50,387 - app.routers.review - INFO - Code review completed for submission.py in 68433ms
+2025-10-14 23:01:01,545 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 23:01:05,371 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 23:01:05,372 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 23:01:14,669 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 23:01:15,884 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 23:01:15,884 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 23:03:04,065 - app.routers.review - INFO - Starting code review for file: code.py (281 characters)
+2025-10-14 23:03:04,065 - app.services.reviewer - INFO - Starting review for code.py, content length: 281
+2025-10-14 23:03:04,065 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:03:04,065 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:03:17,184 - app.services.reviewer - INFO - Received response from Gemini, length: 1809
+2025-10-14 23:03:17,184 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "This Python program correctly implements a function to determine if a number is even or odd and demonstrates basic user input and output. The code is cle...
+2025-10-14 23:03:17,185 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:03:17,185 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:03:17,185 - app.routers.review - INFO - Code review completed for code.py in 13120ms
+2025-10-14 23:04:50,776 - app.routers.review - INFO - Starting code review for file: code.py (281 characters)
+2025-10-14 23:04:50,776 - app.services.reviewer - INFO - Starting review for code.py, content length: 281
+2025-10-14 23:04:50,777 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:04:50,777 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:05:11,709 - app.services.reviewer - INFO - Received response from Gemini, length: 4860
+2025-10-14 23:05:11,710 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python code is simple, clear, and functionally correct for its intended purpose of checking if a number is even or odd. It demonstrates good...
+2025-10-14 23:05:11,711 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:05:11,711 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:05:11,712 - app.routers.review - INFO - Code review completed for code.py in 20936ms
+2025-10-14 23:06:18,903 - app.routers.review - INFO - Starting code review for file: code.py (281 characters)
+2025-10-14 23:06:18,903 - app.services.reviewer - INFO - Starting review for code.py, content length: 281
+2025-10-14 23:06:18,904 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:06:18,904 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:06:41,646 - app.services.reviewer - INFO - Received response from Gemini, length: 4968
+2025-10-14 23:06:41,647 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python code effectively checks if a number is even or odd using a simple function and demonstrates basic input/output. While the core logic ...
+2025-10-14 23:06:41,648 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:06:41,649 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:06:41,649 - app.routers.review - INFO - Code review completed for code.py in 22746ms
+2025-10-14 23:09:16,392 - app.routers.review - INFO - Starting code review for file: code.py (281 characters)
+2025-10-14 23:09:16,393 - app.services.reviewer - INFO - Starting review for code.py, content length: 281
+2025-10-14 23:09:16,394 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:09:16,394 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:09:39,173 - app.services.reviewer - INFO - Received response from Gemini, length: 4933
+2025-10-14 23:09:39,174 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "This Python script correctly determines if a given number is even or odd using a dedicated function. While its core logic is sound and efficient, it lack...
+2025-10-14 23:09:39,174 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:09:39,175 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:09:39,175 - app.routers.review - INFO - Code review completed for code.py in 22783ms
+2025-10-14 23:11:34,683 - app.routers.review - INFO - Starting code review for file: code.py (281 characters)
+2025-10-14 23:11:34,684 - app.services.reviewer - INFO - Starting review for code.py, content length: 281
+2025-10-14 23:11:34,686 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:11:34,687 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:11:49,875 - app.services.reviewer - INFO - Received response from Gemini, length: 2932
+2025-10-14 23:11:49,876 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python script correctly determines if a user-entered number is even or odd using a dedicated function. It is clear, concise, and functional,...
+2025-10-14 23:11:49,876 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:11:49,876 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:11:49,877 - app.routers.review - INFO - Code review completed for code.py in 15193ms
+2025-10-14 23:13:47,413 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-14 23:13:47,414 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-14 23:13:47,414 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:13:47,414 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:14:06,605 - app.services.reviewer - INFO - Received response from Gemini, length: 3602
+2025-10-14 23:14:06,606 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python script robustly handles integer input from the user within a loop, but it contains a critical runtime error due to attempting to call...
+2025-10-14 23:14:06,607 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:14:06,607 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:14:06,607 - app.routers.review - INFO - Code review completed for code.py in 19193ms
+2025-10-14 23:14:06,610 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-14 23:14:06,611 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-14 23:14:06,611 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:14:06,611 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:14:17,305 - app.services.reviewer - INFO - Received response from Gemini, length: 1912
+2025-10-14 23:14:17,306 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python code effectively handles user input to ensure an integer is received, but it contains a critical runtime error due to a call to an un...
+2025-10-14 23:14:17,307 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:14:17,307 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:14:17,308 - app.routers.review - INFO - Code review completed for code.py in 10698ms
+2025-10-14 23:14:23,358 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-14 23:14:23,359 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-14 23:14:23,361 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:14:23,361 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:14:31,613 - app.services.reviewer - INFO - Received response from Gemini, length: 1843
+2025-10-14 23:14:31,614 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python snippet handles user input robustly, ensuring an integer is received, but critically fails at runtime due to an undefined function ca...
+2025-10-14 23:14:31,614 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:14:31,614 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:14:31,614 - app.routers.review - INFO - Code review completed for code.py in 8255ms
+2025-10-14 23:19:13,786 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-14 23:19:13,787 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-14 23:19:13,787 - app.services.reviewer - INFO - Detected language: Python
+2025-10-14 23:19:13,787 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-14 23:19:23,000 - app.services.reviewer - INFO - Received response from Gemini, length: 1903
+2025-10-14 23:19:23,001 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The code effectively handles user input to ensure an integer is provided, but it contains a critical runtime error due to an undefined function call whic...
+2025-10-14 23:19:23,002 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-14 23:19:23,003 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-14 23:19:23,004 - app.routers.review - INFO - Code review completed for code.py in 9217ms
+2025-10-14 23:41:19,395 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 23:41:25,367 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 23:41:25,367 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 23:46:41,884 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 23:46:47,074 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 23:46:47,075 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 23:47:24,620 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 23:47:25,951 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 23:47:25,951 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 23:48:36,215 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 23:48:38,959 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 23:48:38,959 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 23:51:33,078 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 23:51:37,195 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 23:51:37,195 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-14 23:52:59,804 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-14 23:53:02,635 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-14 23:53:02,635 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-15 00:01:09,465 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-15 00:01:14,353 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-15 00:01:14,354 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-15 00:03:28,178 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-15 00:03:32,941 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-15 00:03:32,941 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-15 00:05:23,594 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-15 00:05:23,595 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-15 00:05:23,596 - app.services.reviewer - INFO - Detected language: Python
+2025-10-15 00:05:23,596 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-15 00:05:36,633 - app.services.reviewer - INFO - Received response from Gemini, length: 1936
+2025-10-15 00:05:36,640 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python code attempts to get an integer input from the user and then classify it as even or odd, but it contains a critical error: the `check...
+2025-10-15 00:05:36,650 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-15 00:05:36,658 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-15 00:05:36,885 - app.routers.review - INFO - Code review completed for code.py in 13292ms
+2025-10-15 00:08:20,746 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-15 00:08:20,747 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-15 00:08:20,748 - app.services.reviewer - INFO - Detected language: Python
+2025-10-15 00:08:20,749 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-15 00:08:51,888 - app.services.reviewer - INFO - Received response from Gemini, length: 3369
+2025-10-15 00:08:51,888 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The Python code attempts to obtain an integer input from the user and then calls a function `check_even_odd` to process it. However, the `check_even_odd`...
+2025-10-15 00:08:51,889 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-15 00:08:51,889 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-15 00:08:51,889 - app.routers.review - INFO - Code review completed for code.py in 31143ms
+2025-10-15 00:10:03,263 - app.main - INFO - Code Review Assistant API shutting down...
+2025-10-15 00:10:19,552 - app.main - INFO - Code Review Assistant API starting up...
+2025-10-15 00:10:19,552 - app.main - INFO - Gemini API key found. Service ready for code reviews.
+2025-10-15 00:10:34,822 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-15 00:10:34,823 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-15 00:10:34,824 - app.services.reviewer - INFO - Detected language: Python
+2025-10-15 00:10:34,824 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-15 00:10:52,269 - app.services.reviewer - INFO - Received response from Gemini, length: 2198
+2025-10-15 00:10:52,270 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The code effectively handles user input to ensure a valid integer is provided, but it critically fails at runtime due to a call to an undefined function,...
+2025-10-15 00:10:52,271 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-15 00:10:52,274 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-15 00:10:52,274 - app.routers.review - INFO - Code review completed for code.py in 17451ms
+2025-10-15 00:13:07,155 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-15 00:13:07,157 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-15 00:13:07,157 - app.services.reviewer - INFO - Detected language: Python
+2025-10-15 00:13:07,158 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-15 00:13:21,363 - app.services.reviewer - INFO - Received response from Gemini, length: 3539
+2025-10-15 00:13:21,367 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python code snippet handles user input and basic validation effectively but contains a critical error: it attempts to call an undefined func...
+2025-10-15 00:13:21,370 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-15 00:13:21,372 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-15 00:13:21,378 - app.routers.review - INFO - Code review completed for code.py in 14222ms
+2025-10-15 00:16:50,563 - app.routers.review - INFO - Starting code review for file: code.py (300 characters)
+2025-10-15 00:16:50,563 - app.services.reviewer - INFO - Starting review for code.py, content length: 300
+2025-10-15 00:16:50,564 - app.services.reviewer - INFO - Detected language: Python
+2025-10-15 00:16:50,564 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-15 00:17:08,156 - app.services.reviewer - INFO - Received response from Gemini, length: 3018
+2025-10-15 00:17:08,158 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "Python",
+  "overallSummary": "The provided Python code snippet handles user input for an integer using a `while` loop with `try-except` for validation. However, it critically fails at...
+2025-10-15 00:17:08,158 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-15 00:17:08,160 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-15 00:17:08,160 - app.routers.review - INFO - Code review completed for code.py in 17596ms
+2025-10-15 00:17:13,580 - app.routers.review - INFO - Starting code review for file: ex.cpp (405 characters)
+2025-10-15 00:17:13,581 - app.services.reviewer - INFO - Starting review for ex.cpp, content length: 405
+2025-10-15 00:17:13,581 - app.services.reviewer - INFO - Detected language: C++
+2025-10-15 00:17:13,583 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-15 00:17:27,123 - app.services.reviewer - INFO - Received response from Gemini, length: 4206
+2025-10-15 00:17:27,125 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "C++",
+  "overallSummary": "The provided C++ code contains multiple critical syntax errors, including type mismatches and missing semicolons, which will prevent it from compiling. It a...
+2025-10-15 00:17:27,126 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-15 00:17:27,126 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-15 00:17:27,126 - app.routers.review - INFO - Code review completed for ex.cpp in 13546ms
+2025-10-15 00:19:09,462 - app.routers.review - INFO - Starting code review for file: correct.cpp (433 characters)
+2025-10-15 00:19:09,467 - app.services.reviewer - INFO - Starting review for correct.cpp, content length: 433
+2025-10-15 00:19:09,469 - app.services.reviewer - INFO - Detected language: C++
+2025-10-15 00:19:09,469 - app.services.reviewer - INFO - Calling Gemini API...
+2025-10-15 00:19:15,913 - app.services.reviewer - INFO - Received response from Gemini, length: 828
+2025-10-15 00:19:15,915 - app.services.reviewer - INFO - Cleaned text preview: {
+  "language": "C++",
+  "overallSummary": "This C++ code is exceptionally well-written, clear, and demonstrates fundamental programming concepts correctly without any discernible issues. It's highly ...
+2025-10-15 00:19:15,917 - app.services.reviewer - INFO - Successfully parsed JSON, keys: ['language', 'overallSummary', 'executionAnalysis', 'hasCriticalIssues', 'overallScore', 'qualityMetrics', 'issues']
+2025-10-15 00:19:15,921 - app.services.reviewer - INFO - Successfully created structured report
+2025-10-15 00:19:15,922 - app.routers.review - INFO - Code review completed for correct.cpp in 6460ms

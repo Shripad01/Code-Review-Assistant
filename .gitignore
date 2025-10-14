@@ -1,0 +1,22 @@
+Python
+pycache/
+*.pyc
+*.pyo
+*.pyd
+
+Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+Environment variables
+.env
+
+IDE-specific folders
+.vscode/
+.idea/
+
+Operating System files
+.DS_Store
+Thumbs.db

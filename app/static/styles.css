@@ -1,0 +1,714 @@
+/* General Body Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Prevent horizontal overflow globally */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Ensure all text content wraps properly */
+p, div, span, h1, h2, h3, h4, h5, h6, strong, em, code {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
+/* Force all text elements to wrap */
+* {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Main container for the application */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: #1a1a1a;
+}
+
+header p {
+    margin: 0.5rem 0 0;
+    color: #666;
+}
+
+/* Section for file uploading */
+.upload-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+/* Hide the default file input */
+.file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Style the custom label to look like a button */
+.file-label {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    border: 2px dashed #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.2s ease-in-out;
+}
+
+.file-label:hover {
+    background-color: #f0f0f0;
+    border-color: #007bff;
+}
+
+/* Style for the main submit button */
+.submit-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the disabled state of the button */
+.submit-button:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+/* Results section styles */
+.results-section h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.report-container {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 0;
+    min-height: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Style for the review content container */
+#reportContent {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #333;
+    padding: 2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Review Summary Styles */
+.review-summary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.summary-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.overall-score {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.overall-score.excellent { background: rgba(76, 175, 80, 0.8); }
+.overall-score.good { background: rgba(139, 195, 74, 0.8); }
+.overall-score.fair { background: rgba(255, 152, 0, 0.8); }
+.overall-score.poor { background: rgba(244, 67, 54, 0.8); }
+
+.summary-text {
+    margin: 0;
+    font-size: 1.1rem;
+    opacity: 0.95;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
+/* Execution Analysis Styles */
+.execution-analysis {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.execution-analysis h3 {
+    margin: 0 0 1rem 0;
+    color: #495057;
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.analysis-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    background: white;
+    border: 2px solid transparent;
+}
+
+.analysis-item.success {
+    border-color: #28a745;
+    background: #d4edda;
+}
+
+.analysis-item.error {
+    border-color: #dc3545;
+    background: #f8d7da;
+}
+
+.analysis-item.warning {
+    border-color: #ffc107;
+    background: #fff3cd;
+}
+
+.analysis-item .icon {
+    font-size: 1.2rem;
+}
+
+.analysis-item .label {
+    font-weight: 600;
+    flex: 1;
+}
+
+.analysis-item .status {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.expected-behavior {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #007bff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+}
+
+/* Quality Metrics Styles */
+.quality-metrics {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.quality-metrics h3 {
+    margin: 0 0 1rem 0;
+    color: #495057;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.metric-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.metric-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+.metric-bar {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.metric-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #dc3545 0%, #ffc107 50%, #28a745 100%);
+    transition: width 0.3s ease;
+}
+
+.metric-score {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-align: right;
+}
+
+/* Issues Section Styles */
+.issues-section {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.issues-section h3 {
+    margin: 0 0 1rem 0;
+    color: #495057;
+}
+
+.priority-group {
+    margin-bottom: 1.5rem;
+}
+
+.priority-group:last-child {
+    margin-bottom: 0;
+}
+
+.priority-header {
+    margin: 0 0 1rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.priority-group.high .priority-header {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.priority-group.medium .priority-header {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.priority-group.low .priority-header {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.issue-item {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.issue-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.issue-item:last-child {
+    margin-bottom: 0;
+}
+
+.issue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.issue-line {
+    background: #007bff;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.issue-category {
+    background: #6c757d;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.issue-priority {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.issue-priority.high {
+    background: #dc3545;
+    color: white;
+}
+
+.issue-priority.medium {
+    background: #ffc107;
+    color: #212529;
+}
+
+.issue-priority.low {
+    background: #28a745;
+    color: white;
+}
+
+.issue-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #212529;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+    display: block;
+}
+
+.issue-description {
+    margin-bottom: 0.5rem;
+    color: #495057;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+    display: block;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    word-break: break-word;
+}
+
+.issue-impact {
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+    font-style: italic;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+    display: block;
+}
+
+.issue-tags {
+    margin-bottom: 0.5rem;
+}
+
+.tag {
+    display: inline-block;
+    background: #e9ecef;
+    color: #495057;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.issue-fix {
+    margin-top: 0.5rem;
+}
+
+.issue-fix summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #007bff;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+}
+
+.issue-fix summary:hover {
+    background: #e9ecef;
+}
+
+.fix-content {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+/* No Issues Styles */
+.no-issues {
+    text-align: center;
+    padding: 2rem;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    color: #155724;
+}
+
+.no-issues h3 {
+    margin: 0 0 0.5rem 0;
+    color: #155724;
+}
+
+/* File Info Styles */
+.file-info {
+    font-weight: 600;
+    color: #007bff;
+}
+
+.processing-info {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: normal;
+}
+
+/* Error Message Styles */
+.error-message {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: #721c24;
+}
+
+.error-message h3 {
+    margin: 0 0 1rem 0;
+    color: #721c24;
+}
+
+.error-message details {
+    margin-top: 1rem;
+}
+
+.error-message summary {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.5rem;
+    background: rgba(114, 28, 36, 0.1);
+    border-radius: 4px;
+}
+
+.error-message pre {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    overflow-x: auto;
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+    color: #888;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+        margin: 0.5rem;
+        border-radius: 8px;
+    }
+
+    .upload-section {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .file-label, .submit-button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .issue-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .summary-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .overall-score {
+        font-size: 1.5rem;
+        padding: 0.75rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+        margin: 0.25rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .review-summary {
+        padding: 1rem;
+    }
+
+    .summary-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .overall-score {
+        font-size: 1.25rem;
+    }
+
+    #reportContent {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}

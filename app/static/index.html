@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Review Assistant Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+        }
+
+        .app-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #cbd5e1;
+        }
+
+        .nav-tab:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Tab Content Sections */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Upload Section */
+        .upload-container {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .upload-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .upload-description {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .file-input {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .file-label {
+            display: block;
+            padding: 2rem;
+            border: 2px dashed rgba(59, 130, 246, 0.5);
+            border-radius: 12px;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+            background: rgba(51, 65, 85, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .file-label:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .submit-button {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        .submit-button:disabled {
+            background: rgba(100, 116, 139, 0.5);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Dashboard Section */
+        .header-section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .file-metadata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: rgba(51, 65, 85, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .metadata-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        .metadata-value {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        .alert-bar {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.3) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            border-radius: 1.5rem;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 24px rgba(239, 68, 68, 0.2);
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+        }
+
+        .alert-text {
+            font-weight: 600;
+            color: #fecaca;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .metric-card:hover::before {
+            opacity: 1;
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .metric-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .metric-icon {
+            font-size: 1.25rem;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .code-viewer {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-header {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-title {
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .code-content {
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            max-height: 500px;
+            overflow-y: auto;
+            color: #e2e8f0;
+        }
+
+        .analysis-panel {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .analysis-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+        }
+
+        .analysis-item {
+            background: rgba(51, 65, 85, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .analysis-item:hover {
+            background: rgba(51, 65, 85, 0.6);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .analysis-item-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-icon {
+            font-size: 1.25rem;
+        }
+
+        .analysis-item-title {
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .analysis-item-desc {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-left: 2rem;
+        }
+
+        .quality-section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .quality-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #e2e8f0;
+        }
+
+        .quality-metrics {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .quality-metric {
+            background: rgba(51, 65, 85, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .quality-metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .quality-metric-name {
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .quality-metric-score {
+            font-weight: 700;
+            font-size: 1.125rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: rgba(51, 65, 85, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+            border-radius: 12px;
+            transition: width 1s ease;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(148, 163, 184, 0.3);
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .issue-item {
+            background: rgba(51, 65, 85, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .issue-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .issue-priority {
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .issue-priority.high {
+            background: rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .issue-priority.medium {
+            background: rgba(234, 179, 8, 0.3);
+            color: #fde047;
+        }
+
+        .issue-priority.low {
+            background: rgba(34, 197, 94, 0.3);
+            color: #86efac;
+        }
+
+        .issue-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+
+        .issue-description {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1200px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-tabs {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-section">
+            <div class="logo">🤖</div>
+            <div class="app-name">Code Review Assistant</div>
+        </div>
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="upload">Upload</div>
+            <div class="nav-tab" data-tab="dashboard">Dashboard</div>
+            <div class="nav-tab" data-tab="settings">Settings</div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Upload Tab -->
+        <div class="tab-content active" id="upload">
+            <div class="upload-container">
+                <h1 class="upload-title">Upload Code for Review</h1>
+                <p class="upload-description">Upload your source code file to get comprehensive AI-powered analysis with detailed metrics and improvement recommendations.</p>
+                
+                <input type="file" id="fileInput" class="file-input">
+                <label for="fileInput" class="file-label">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📁</div>
+                    <div>Choose a File</div>
+                    <div style="font-size: 0.875rem; color: #64748b; margin-top: 0.5rem;">Supports Python, JavaScript, TypeScript, Java, C++, and more</div>
+                </label>
+                <button id="submitBtn" class="submit-button">Get Review</button>
+            </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div class="tab-content" id="dashboard">
+            <div class="header-section">
+                <h1 class="header-title" id="dashboardTitle">AI Code Analysis Report</h1>
+                <div class="file-metadata" id="fileMetadata">
+                    <div class="metadata-item">
+                        <span class="metadata-label">Status:</span>
+                        <span class="metadata-value">No file analyzed yet</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="alertContainer"></div>
+
+            <div class="metrics-grid" id="metricsGrid">
+                <!-- Metrics will be populated by JavaScript -->
+            </div>
+
+            <div class="content-grid">
+                <div class="code-viewer">
+                    <div class="code-header">
+                        <span class="code-title">Source Code Analysis</span>
+                    </div>
+                    <div class="code-content" id="codeContent">
+                        <p style="color: #94a3b8; text-align: center; padding: 2rem;">Upload a file to see the analysis</p>
+                    </div>
+                </div>
+
+                <div class="analysis-panel">
+                    <h3 class="analysis-title">Deep Analysis Results</h3>
+                    <div id="analysisContent">
+                        <p style="color: #94a3b8; text-align: center;">No analysis available</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quality-section">
+                <h2 class="quality-title">Code Quality Metrics</h2>
+                <div class="quality-metrics" id="qualityMetrics">
+                    <!-- Quality metrics will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-content" id="settings">
+            <div class="header-section">
+                <h1 class="header-title">Settings</h1>
+                <p style="color: #94a3b8; margin-top: 1rem;">Configure your code review preferences and AI model settings.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        const tabs = document.querySelectorAll('.nav-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const targetTab = this.getAttribute('data-tab');
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // File upload handling
+        const fileInput = document.getElementById('fileInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const fileLabel = document.querySelector('.file-label');
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                fileLabel.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                    <div>${fileName}</div>
+                    <div style="font-size: 0.875rem; color: #64748b; margin-top: 0.5rem;">Ready to analyze</div>
+                `;
+            }
+        });
+
+        submitBtn.addEventListener('click', async () => {
+            if (fileInput.files.length === 0) {
+                alert('Please select a file first!');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span>Analyzing...';
+
+            try {
+                const response = await fetch('/review/', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.detail || 'An error occurred');
+                }
+
+                if (!result.review_report) {
+                    throw new Error('Invalid response format');
+                }
+
+                displayReviewReport(result);
+                
+                // Switch to dashboard tab
+                document.querySelector('[data-tab="dashboard"]').click();
+
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Get Review';
+            }
+        });
+
+        function displayReviewReport(result) {
+            const review = result.review_report;
+            
+            // Update header
+            document.getElementById('dashboardTitle').textContent = `Analysis: ${result.filename}`;
+            
+            // Update metadata
+            document.getElementById('fileMetadata').innerHTML = `
+                <div class="metadata-item">
+                    <span class="metadata-label">Filename:</span>
+                    <span class="metadata-value">${result.filename}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">Language:</span>
+                    <span class="metadata-value">${review.language}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">Issues:</span>
+                    <span class="metadata-value">${review.issues ? review.issues.length : 0}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">Score:</span>
+                    <span class="metadata-value">${review.overall_score}/100</span>
+                </div>
+            `;
+
+            // Update alert if critical issues
+            const alertContainer = document.getElementById('alertContainer');
+            if (review.has_critical_issues) {
+                const criticalIssues = review.issues.filter(i => i.priority === 'High');
+                if (criticalIssues.length > 0) {
+                    alertContainer.innerHTML = `
+                        <div class="alert-bar">
+                            <span class="alert-icon">⚠️</span>
+                            <span class="alert-text">Critical issues detected: ${criticalIssues[0].title}</span>
+                        </div>
+                    `;
+                }
+            } else {
+                alertContainer.innerHTML = '';
+            }
+
+            // Update metrics
+            const highPriority = review.issues.filter(i => i.priority === 'High').length;
+            const mediumPriority = review.issues.filter(i => i.priority === 'Medium').length;
+            const lowPriority = review.issues.filter(i => i.priority === 'Low').length;
+
+            document.getElementById('metricsGrid').innerHTML = `
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Total Issues</span>
+                        <span class="metric-icon">🔍</span>
+                    </div>
+                    <div class="metric-value">${review.issues.length}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">High Priority</span>
+                        <span class="metric-icon">🔴</span>
+                    </div>
+                    <div class="metric-value">${highPriority}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Medium Priority</span>
+                        <span class="metric-icon">🟡</span>
+                    </div>
+                    <div class="metric-value">${mediumPriority}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Low Priority</span>
+                        <span class="metric-icon">🟢</span>
+                    </div>
+                    <div class="metric-value">${lowPriority}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-label">Execution</span>
+                        <span class="metric-icon">${review.execution_analysis.will_run ? '✅' : '❌'}</span>
+                    </div>
+                    <div class="metric-value">${review.execution_analysis.will_run ? 'PASS' : 'FAIL'}</div>
+                </div>
+            `;
+
+            // Update analysis panel
+            document.getElementById('analysisContent').innerHTML = `
+                <div class="analysis-item">
+                    <div class="analysis-item-header">
+                        <span class="status-icon">${review.execution_analysis.will_compile ? '✅' : '❌'}</span>
+                        <span class="analysis-item-title">Compilation</span>
+                    </div>
+                    <div class="analysis-item-desc">${review.execution_analysis.will_compile ? 'Will compile' : 'Won\'t compile'}</div>
+                </div>
+                <div class="analysis-item">
+                    <div class="analysis-item-header">
+                        <span class="status-icon">${review.execution_analysis.will_run ? '✅' : '❌'}</span>
+                        <span class="analysis-item-title">Runtime</span>
+                    </div>
+                    <div class="analysis-item-desc">${review.execution_analysis.expected_behavior}</div>
+                </div>
+                ${review.issues.slice(0, 3).map(issue => `
+                    <div class="analysis-item">
+                        <div class="analysis-item-header">
+                            <span class="status-icon">${issue.priority === 'High' ? '❌' : issue.priority === 'Medium' ? '⚠️' : 'ℹ️'}</span>
+                            <span class="analysis-item-title">${issue.title}</span>
+                        </div>
+                        <div class="analysis-item-desc">Line ${issue.line}: ${issue.description.substring(0, 100)}...</div>
+                    </div>
+                `).join('')}
+            `;
+
+            // Update code content
+            document.getElementById('codeContent').innerHTML = `
+                <div style="white-space: pre-wrap; font-family: 'Courier New', monospace;">
+                    <strong style="color: #60a5fa;">Summary:</strong> ${review.overall_summary}
+                    
+                    <strong style="color: #60a5fa; margin-top: 1rem; display: block;">Issues Detected:</strong>
+                    ${review.issues.map((issue, idx) => `
+                    ${idx + 1}. <span class="issue-priority ${issue.priority.toLowerCase()}">${issue.priority}</span> Line ${issue.line}: ${issue.title}
+                       ${issue.description}
+                    `).join('\n\n')}
+                </div>
+            `;
+
+            // Update quality metrics
+            const metrics = review.quality_metrics;
+            document.getElementById('qualityMetrics').innerHTML = `
+                <div class="quality-metric">
+                    <div class="quality-metric-header">
+                        <span class="quality-metric-name">Readability</span>
+                        <span class="quality-metric-score">${metrics.readability}/10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${metrics.readability * 10}%"></div>
+                    </div>
+                </div>
+                <div class="quality-metric">
+                    <div class="quality-metric-header">
+                        <span class="quality-metric-name">Maintainability</span>
+                        <span class="quality-metric-score">${metrics.maintainability}/10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${metrics.maintainability * 10}%"></div>
+                    </div>
+                </div>
+                <div class="quality-metric">
+                    <div class="quality-metric-header">
+                        <span class="quality-metric-name">Efficiency</span>
+                        <span class="quality-metric-score">${metrics.efficiency}/10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${metrics.efficiency * 10}%"></div>
+                    </div>
+                </div>
+                <div class="quality-metric">
+                    <div class="quality-metric-header">
+                        <span class="quality-metric-name">Security</span>
+                        <span class="quality-metric-score">${metrics.security}/10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${metrics.security * 10}%"></div>
+                    </div>
+                </div>
+            `;
+
+            // Animate progress bars
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach(fill => {
+                    const width = fill.style.width;
+                    fill.style.width = '0%';
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 100);
+                });
+            }, 100);
+        }
+
+        // Helper function to format markdown
+        function formatMarkdown(text) {
+            if (!text) return '';
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`(.*?)`/g, '<code>$1</code>')
+                .replace(/\n/g, '<br>');
+        }
+
+        // Add hover effects to metric cards
+        document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.closest('.metric-card')) {
+                    e.target.closest('.metric-card').style.zIndex = '10';
+                }
+            });
+
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.closest('.metric-card')) {
+                    e.target.closest('.metric-card').style.zIndex = '1';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
