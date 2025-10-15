@@ -97,6 +97,7 @@
             max-width: 1600px;
             margin: 0 auto;
             padding: 2rem;
+            min-height: calc(100vh - 200px);
         }
 
         /* Tab Content Sections */
@@ -106,6 +107,142 @@
 
         .tab-content.active {
             display: block;
+        }
+
+        /* About Us Section */
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            padding: 4rem 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        .content-section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-text {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 1.5rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.75rem 0;
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #60a5fa;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .creator-section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .creator-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
 
         /* Upload Section */
@@ -547,6 +684,29 @@
             line-height: 1.6;
         }
 
+        /* Footer */
+        .footer {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .footer-highlight {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
         @media (max-width: 1200px) {
             .content-grid {
                 grid-template-columns: 1fr;
@@ -572,6 +732,22 @@
             .metrics-grid {
                 grid-template-columns: 1fr;
             }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -582,15 +758,85 @@
             <div class="app-name">Code Review Assistant</div>
         </div>
         <div class="nav-tabs">
-            <div class="nav-tab active" data-tab="upload">Upload</div>
+            <div class="nav-tab active" data-tab="about">About Us</div>
+            <div class="nav-tab" data-tab="upload">Upload</div>
             <div class="nav-tab" data-tab="dashboard">Dashboard</div>
-            <div class="nav-tab" data-tab="settings">Settings</div>
         </div>
     </nav>
 
     <div class="container">
+        <!-- About Us Tab -->
+        <div class="tab-content active" id="about">
+            <div class="about-container">
+                <div class="hero-section">
+                    <h1 class="hero-title">About CodeRev Assistant</h1>
+                    <p class="hero-subtitle">Bridging the Gap Between Code and Clarity</p>
+                    <button class="cta-button" onclick="document.querySelector('[data-tab=upload]').click()">
+                        Get Started - Upload Your Code
+                    </button>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="content-title">Our Mission</h2>
+                    <p class="content-text">
+                        In today's fast-paced development world, writing code is only half the battle. Writing good code—code that is efficient, secure, and maintainable—is what truly matters. Our mission is simple: to empower every developer, from the curious student to the seasoned professional, to achieve this standard with confidence.
+                    </p>
+                    <p class="content-text">
+                        We believe that intelligent tools can elevate the craft of software development, making high-quality code the new baseline.
+                    </p>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="content-title">What We Do</h2>
+                    <p class="content-text">
+                        CodeRev Assistant is more than just a linter; it's your personal AI code quality expert. By uploading your source code, you unleash the power of advanced language models to perform a deep static analysis. Our tool meticulously examines your code to:
+                    </p>
+                    <ul class="feature-list">
+                        <li><strong>Identify Critical Errors:</strong> Pinpoint bugs and logical flaws that could lead to runtime failures.</li>
+                        <li><strong>Provide Quality Metrics:</strong> Score your code on key metrics like readability, maintainability, efficiency, and security.</li>
+                        <li><strong>Suggest Actionable Improvements:</strong> Offer concrete, line-by-line suggestions and code snippets to fix issues and refactor for clarity.</li>
+                        <li><strong>Enforce Best Practices:</strong> Ensure your code adheres to industry standards and language-specific conventions.</li>
+                    </ul>
+                    <p class="content-text">
+                        The result is a comprehensive, easy-to-understand report that not only helps you fix immediate problems but also helps you learn and improve as a developer.
+                    </p>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="content-title">The Technology Behind the Analysis</h2>
+                    <p class="content-text">
+                        We are passionate about using cutting-edge technology to deliver a seamless and insightful experience. Our platform is built on a robust and modern tech stack:
+                    </p>
+                    <div class="tech-stack">
+                        <div class="tech-badge">Python</div>
+                        <div class="tech-badge">FastAPI</div>
+                        <div class="tech-badge">Google Gemini AI</div>
+                        <div class="tech-badge">Modern Web Technologies</div>
+                    </div>
+                </div>
+
+                <div class="creator-section">
+                    <div class="creator-icon">👨‍💻</div>
+                    <h2 class="content-title">Meet the Creator</h2>
+                    <p class="content-text">
+                        CodeRev Assistant was created and developed by <strong>Shripad Salunke</strong>, a passionate student developer from Vellore, India. Driven by a love for technology and a desire to build tools that solve real-world problems for the developer community, Shripad envisioned a smarter, more accessible way to approach code reviews. This project is a testament to that vision.
+                    </p>
+                </div>
+
+                <div class="hero-section">
+                    <h2 class="content-title">Get Started</h2>
+                    <p class="content-text" style="margin-bottom: 2rem;">
+                        Ready to take your code to the next level? Upload a file and see the difference AI-powered analysis can make.
+                    </p>
+                    <button class="cta-button" onclick="document.querySelector('[data-tab=upload]').click()">
+                        Start Analyzing Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Upload Tab -->
-        <div class="tab-content active" id="upload">
+        <div class="tab-content" id="upload">
             <div class="upload-container">
                 <h1 class="upload-title">Upload Code for Review</h1>
                 <p class="upload-description">Upload your source code file to get comprehensive AI-powered analysis with detailed metrics and improvement recommendations.</p>
@@ -648,15 +894,13 @@
                 </div>
             </div>
         </div>
-
-        <!-- Settings Tab -->
-        <div class="tab-content" id="settings">
-            <div class="header-section">
-                <h1 class="header-title">Settings</h1>
-                <p style="color: #94a3b8; margin-top: 1rem;">Configure your code review preferences and AI model settings.</p>
-            </div>
-        </div>
     </div>
+
+    <footer class="footer">
+        <p class="footer-text">
+            Created by <span class="footer-highlight">Shripad Salunke</span>
+        </p>
+    </footer>
 
     <script>
         // Tab switching

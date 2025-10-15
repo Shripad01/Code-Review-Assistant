@@ -76,5 +76,3 @@ The detailed review report will appear on the page.
 
 This project is for educational and demonstration purposes.
 
-# Code-Review-Assistant
-8ebff29cf1aa7f160f611dc6030684dc80dfdc6c
