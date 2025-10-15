@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Review Assistant Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/editor/editor.main.css">
     <style>
         * {
             margin: 0;
@@ -468,6 +469,7 @@
             margin-bottom: 2rem;
         }
 
+        /* Monaco Editor Container */
         .code-viewer {
             background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(20px);
@@ -475,6 +477,12 @@
             border-radius: 1.5rem;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .code-viewer:hover {
+            box-shadow: 0 12px 48px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
         }
 
         .code-header {
@@ -489,16 +497,41 @@
         .code-title {
             font-weight: 600;
             color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .code-content {
-            padding: 1.5rem;
-            font-family: 'Courier New', monospace;
+        .code-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-button {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #60a5fa;
             font-size: 0.875rem;
-            line-height: 1.6;
-            max-height: 500px;
-            overflow-y: auto;
-            color: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-button:hover {
+            background: rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px);
+        }
+
+        #monacoEditorContainer {
+            height: 600px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
         }
 
         .analysis-panel {
@@ -508,6 +541,8 @@
             border-radius: 1.5rem;
             padding: 1.5rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-height: 700px;
+            overflow-y: auto;
         }
 
         .analysis-title {
@@ -524,11 +559,13 @@
             padding: 1rem;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .analysis-item:hover {
             background: rgba(51, 65, 85, 0.6);
             border-color: rgba(59, 130, 246, 0.3);
+            transform: translateX(4px);
         }
 
         .analysis-item-header {
@@ -634,56 +671,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        .issue-item {
-            background: rgba(51, 65, 85, 0.4);
-            border: 1px solid rgba(148, 163, 184, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .issue-header {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .issue-priority {
-            padding: 0.25rem 0.75rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .issue-priority.high {
-            background: rgba(239, 68, 68, 0.3);
-            color: #fca5a5;
-        }
-
-        .issue-priority.medium {
-            background: rgba(234, 179, 8, 0.3);
-            color: #fde047;
-        }
-
-        .issue-priority.low {
-            background: rgba(34, 197, 94, 0.3);
-            color: #86efac;
-        }
-
-        .issue-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #e2e8f0;
-        }
-
-        .issue-description {
-            color: #94a3b8;
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-        }
-
         /* Footer */
         .footer {
             background: rgba(15, 23, 42, 0.8);
@@ -707,9 +694,32 @@
             font-weight: 600;
         }
 
+        /* Custom scrollbar for analysis panel */
+        .analysis-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .analysis-panel::-webkit-scrollbar-track {
+            background: rgba(51, 65, 85, 0.3);
+            border-radius: 4px;
+        }
+
+        .analysis-panel::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+
+        .analysis-panel::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
+        }
+
         @media (max-width: 1200px) {
             .content-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            #monacoEditorContainer {
+                height: 500px;
             }
         }
 
@@ -747,6 +757,10 @@
 
             .content-section {
                 padding: 1.5rem;
+            }
+
+            #monacoEditorContainer {
+                height: 400px;
             }
         }
     </style>
@@ -872,11 +886,18 @@
             <div class="content-grid">
                 <div class="code-viewer">
                     <div class="code-header">
-                        <span class="code-title">Source Code Analysis</span>
+                        <span class="code-title">
+                            <span>📝</span>
+                            <span>Interactive Code Viewer</span>
+                        </span>
+                        <div class="code-actions">
+                            <button class="action-button" id="copyCodeBtn" title="Copy code to clipboard">
+                                <span>📋</span>
+                                <span>Copy</span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="code-content" id="codeContent">
-                        <p style="color: #94a3b8; text-align: center; padding: 2rem;">Upload a file to see the analysis</p>
-                    </div>
+                    <div id="monacoEditorContainer"></div>
                 </div>
 
                 <div class="analysis-panel">
@@ -902,7 +923,217 @@
         </p>
     </footer>
 
+    <!-- Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
     <script>
+        // Global variables
+        let editor = null;
+        let currentCode = '';
+        let currentLanguage = 'plaintext';
+        let issuesDecorations = [];
+        let currentIssues = [];
+
+        // Language mapping for Monaco Editor
+        const languageMap = {
+            'Python': 'python',
+            'JavaScript': 'javascript',
+            'TypeScript': 'typescript',
+            'Java': 'java',
+            'C++': 'cpp',
+            'C': 'c',
+            'C#': 'csharp',
+            'PHP': 'php',
+            'Ruby': 'ruby',
+            'Go': 'go',
+            'Rust': 'rust',
+            'Swift': 'swift',
+            'Kotlin': 'kotlin',
+            'Scala': 'scala',
+            'R': 'r',
+            'SQL': 'sql',
+            'HTML': 'html',
+            'CSS': 'css',
+            'XML': 'xml',
+            'YAML': 'yaml',
+            'JSON': 'json',
+            'Shell': 'shell',
+            'Unknown': 'plaintext'
+        };
+
+        // Initialize Monaco Editor
+        function initMonacoEditor() {
+            require.config({ 
+                paths: { 
+                    vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' 
+                }
+            });
+            
+            require(['vs/editor/editor.main'], function() {
+                // Define custom dark theme
+                monaco.editor.defineTheme('customDark', {
+                    base: 'vs-dark',
+                    inherit: true,
+                    rules: [
+                        { token: 'comment', foreground: '6A9955' },
+                        { token: 'keyword', foreground: '569CD6' },
+                        { token: 'string', foreground: 'CE9178' },
+                        { token: 'number', foreground: 'B5CEA8' },
+                        { token: 'function', foreground: 'DCDCAA' },
+                        { token: 'variable', foreground: '9CDCFE' },
+                    ],
+                    colors: {
+                        'editor.background': '#0f172a',
+                        'editor.foreground': '#e2e8f0',
+                        'editor.lineHighlightBackground': '#1e293b',
+                        'editorLineNumber.foreground': '#64748b',
+                        'editorLineNumber.activeForeground': '#60a5fa',
+                        'editor.selectionBackground': '#334155',
+                        'editor.inactiveSelectionBackground': '#1e293b',
+                        'editorCursor.foreground': '#60a5fa',
+                        'editorWhitespace.foreground': '#334155',
+                        'editorIndentGuide.background': '#1e293b',
+                        'editorIndentGuide.activeBackground': '#334155',
+                        'scrollbar.shadow': '#00000050',
+                        'scrollbarSlider.background': '#33415550',
+                        'scrollbarSlider.hoverBackground': '#33415570',
+                        'scrollbarSlider.activeBackground': '#33415590',
+                    }
+                });
+
+                
+                editor = monaco.editor.create(document.getElementById('monacoEditorContainer'), {
+                    value: '// Upload a file to see your code here with full syntax highlighting\n// Click on any line to see related issues',
+                    language: 'plaintext',
+                    theme: 'customDark',
+                    readOnly: true,
+                    automaticLayout: true,
+                    fontSize: 14,
+                    fontFamily: "'Courier New', Consolas, monospace",
+                    lineNumbers: 'on',
+                    renderLineHighlight: 'all',
+                    minimap: {
+                        enabled: true,
+                        scale: 1
+                    },
+                    scrollBeyondLastLine: false,
+                    wordWrap: 'off',
+                    wrappingIndent: 'none',
+                    smoothScrolling: true,
+                    cursorBlinking: 'smooth',
+                    folding: true,
+                    lineDecorationsWidth: 10,
+                    lineNumbersMinChars: 4,
+                    glyphMargin: true,
+                    renderWhitespace: 'selection',
+                    scrollbar: {
+                        vertical: 'visible',
+                        horizontal: 'visible',
+                        verticalScrollbarSize: 12,
+                        horizontalScrollbarSize: 12
+                    }
+                });
+                // Add click handler for issues
+                editor.onMouseDown((e) => {
+                    if (e.target.position) {
+                        const lineNumber = e.target.position.lineNumber;
+                        highlightIssueForLine(lineNumber);
+                    }
+                });
+
+                console.log('Monaco Editor initialized successfully');
+            });
+        }
+
+        // Highlight issues on specific line
+        function highlightIssueForLine(lineNumber) {
+            const issuesForLine = currentIssues.filter(issue => issue.line === lineNumber);
+            if (issuesForLine.length > 0) {
+                const issue = issuesForLine[0];
+                // Scroll to the issue in the analysis panel
+                const analysisItems = document.querySelectorAll('.analysis-item');
+                analysisItems.forEach((item, index) => {
+                    if (currentIssues[index] && currentIssues[index].line === lineNumber) {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        item.style.background = 'rgba(59, 130, 246, 0.3)';
+                        setTimeout(() => {
+                            item.style.background = 'rgba(51, 65, 85, 0.4)';
+                        }, 1000);
+                    }
+                });
+            }
+        }
+
+        // Update Monaco Editor with code and issues
+        // Update Monaco Editor with code only (no decorations)
+        function updateMonacoEditor(code, language, issues) {
+            if (!editor) {
+                console.error('Editor not initialized');
+                return;
+            }
+
+            currentCode = code;
+            currentLanguage = languageMap[language] || 'plaintext';
+            currentIssues = issues || [];
+
+            console.log('Updating editor with language:', currentLanguage);
+
+            // Set the language first
+            const model = editor.getModel();
+            monaco.editor.setModelLanguage(model, currentLanguage);
+            
+            // Set the code content exactly as it is
+            editor.setValue(code);
+
+            // Force layout update
+            setTimeout(() => {
+                editor.layout();
+            }, 100);
+
+            // Clear all decorations to show code as-is
+            issuesDecorations = editor.deltaDecorations(issuesDecorations, []);
+        }
+
+        // Add custom styles for editor decorations
+        function addEditorStyles() {
+            const styleId = 'monaco-custom-styles';
+            if (document.getElementById(styleId)) return;
+
+            const style = document.createElement('style');
+            style.id = styleId;
+            style.textContent = `
+                .line-error { background: rgba(239, 68, 68, 0.15); }
+                .line-warning { background: rgba(234, 179, 8, 0.15); }
+                .line-info { background: rgba(59, 130, 246, 0.1); }
+                
+                .glyph-error::before { content: '●'; color: #ef4444; font-size: 16px; }
+                .glyph-warning::before { content: '●'; color: #eab308; font-size: 16px; }
+                .glyph-info::before { content: '●'; color: #3b82f6; font-size: 16px; }
+                
+                .squiggly-error { text-decoration: wavy underline; text-decoration-color: #ef4444; }
+                .squiggly-warning { text-decoration: wavy underline; text-decoration-color: #eab308; }
+                .squiggly-info { text-decoration: wavy underline; text-decoration-color: #3b82f6; }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Copy code to clipboard
+        document.addEventListener('DOMContentLoaded', () => {
+            initMonacoEditor();
+
+            document.getElementById('copyCodeBtn').addEventListener('click', () => {
+                if (editor && currentCode) {
+                    navigator.clipboard.writeText(currentCode).then(() => {
+                        const btn = document.getElementById('copyCodeBtn');
+                        const originalHTML = btn.innerHTML;
+                        btn.innerHTML = '<span>✓</span><span>Copied!</span>';
+                        setTimeout(() => {
+                            btn.innerHTML = originalHTML;
+                        }, 2000);
+                    });
+                }
+            });
+        });
+
         // Tab switching
         const tabs = document.querySelectorAll('.nav-tab');
         const tabContents = document.querySelectorAll('.tab-content');
@@ -916,6 +1147,11 @@
                 
                 this.classList.add('active');
                 document.getElementById(targetTab).classList.add('active');
+
+                // Trigger layout update for Monaco when dashboard is shown
+                if (targetTab === 'dashboard' && editor) {
+                    setTimeout(() => editor.layout(), 100);
+                }
             });
         });
 
@@ -945,6 +1181,9 @@
             const formData = new FormData();
             formData.append('file', file);
 
+            // Read file content for Monaco Editor
+            const fileContent = await file.text();
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="loading"></span>Analyzing...';
 
@@ -964,7 +1203,7 @@
                     throw new Error('Invalid response format');
                 }
 
-                displayReviewReport(result);
+                displayReviewReport(result, fileContent);
                 
                 // Switch to dashboard tab
                 document.querySelector('[data-tab="dashboard"]').click();
@@ -977,8 +1216,11 @@
             }
         });
 
-        function displayReviewReport(result) {
+        function displayReviewReport(result, fileContent) {
             const review = result.review_report;
+            
+            // Update Monaco Editor with the code
+            updateMonacoEditor(fileContent, review.language, review.issues);
             
             // Update header
             document.getElementById('dashboardTitle').textContent = `Analysis: ${result.filename}`;
@@ -1062,14 +1304,14 @@
                 </div>
             `;
 
-            // Update analysis panel
-            document.getElementById('analysisContent').innerHTML = `
+            // Update analysis panel with clickable issues
+            let analysisHTML = `
                 <div class="analysis-item">
                     <div class="analysis-item-header">
                         <span class="status-icon">${review.execution_analysis.will_compile ? '✅' : '❌'}</span>
                         <span class="analysis-item-title">Compilation</span>
                     </div>
-                    <div class="analysis-item-desc">${review.execution_analysis.will_compile ? 'Will compile' : 'Won\'t compile'}</div>
+                    <div class="analysis-item-desc">${review.execution_analysis.will_compile ? 'Will compile successfully' : 'Compilation will fail'}</div>
                 </div>
                 <div class="analysis-item">
                     <div class="analysis-item-header">
@@ -1078,29 +1320,27 @@
                     </div>
                     <div class="analysis-item-desc">${review.execution_analysis.expected_behavior}</div>
                 </div>
-                ${review.issues.slice(0, 3).map(issue => `
-                    <div class="analysis-item">
-                        <div class="analysis-item-header">
-                            <span class="status-icon">${issue.priority === 'High' ? '❌' : issue.priority === 'Medium' ? '⚠️' : 'ℹ️'}</span>
-                            <span class="analysis-item-title">${issue.title}</span>
-                        </div>
-                        <div class="analysis-item-desc">Line ${issue.line}: ${issue.description.substring(0, 100)}...</div>
-                    </div>
-                `).join('')}
             `;
 
-            // Update code content
-            document.getElementById('codeContent').innerHTML = `
-                <div style="white-space: pre-wrap; font-family: 'Courier New', monospace;">
-                    <strong style="color: #60a5fa;">Summary:</strong> ${review.overall_summary}
-                    
-                    <strong style="color: #60a5fa; margin-top: 1rem; display: block;">Issues Detected:</strong>
-                    ${review.issues.map((issue, idx) => `
-                    ${idx + 1}. <span class="issue-priority ${issue.priority.toLowerCase()}">${issue.priority}</span> Line ${issue.line}: ${issue.title}
-                       ${issue.description}
-                    `).join('\n\n')}
-                </div>
-            `;
+            review.issues.forEach((issue, index) => {
+                analysisHTML += `
+                    <div class="analysis-item" onclick="jumpToLine(${issue.line})" data-line="${issue.line}">
+                        <div class="analysis-item-header">
+                            <span class="status-icon">${issue.priority === 'High' ? '🔴' : issue.priority === 'Medium' ? '🟡' : '🟢'}</span>
+                            <span class="analysis-item-title">${issue.title}</span>
+                        </div>
+                        <div class="analysis-item-desc">
+                            <strong>Line ${issue.line}</strong> - ${issue.priority} Priority
+                            <br><br>
+                            ${issue.description.substring(0, 150)}${issue.description.length > 150 ? '...' : ''}
+                            <br><br>
+                            <strong>Impact:</strong> ${issue.potential_impact}
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('analysisContent').innerHTML = analysisHTML;
 
             // Update quality metrics
             const metrics = review.quality_metrics;
@@ -1155,29 +1395,47 @@
             }, 100);
         }
 
-        // Helper function to format markdown
-        function formatMarkdown(text) {
-            if (!text) return '';
-            return text
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                .replace(/`(.*?)`/g, '<code>$1</code>')
-                .replace(/\n/g, '<br>');
+        // Jump to specific line in Monaco Editor
+        function jumpToLine(lineNumber) {
+            if (editor) {
+                editor.revealLineInCenter(lineNumber);
+                editor.setPosition({ lineNumber, column: 1 });
+                editor.focus();
+                
+                // Highlight the line temporarily
+                const decoration = editor.deltaDecorations([], [{
+                    range: new monaco.Range(lineNumber, 1, lineNumber, 1),
+                    options: {
+                        isWholeLine: true,
+                        className: 'highlighted-line'
+                    }
+                }]);
+
+                // Add temporary highlight style
+                if (!document.getElementById('temp-highlight-style')) {
+                    const style = document.createElement('style');
+                    style.id = 'temp-highlight-style';
+                    style.textContent = '.highlighted-line { background: rgba(59, 130, 246, 0.4) !important; animation: pulse 0.5s; } @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }';
+                    document.head.appendChild(style);
+                }
+
+                setTimeout(() => {
+                    editor.deltaDecorations(decoration, []);
+                }, 2000);
+            }
         }
 
         // Add hover effects to metric cards
-        document.addEventListener('DOMContentLoaded', () => {
-            document.addEventListener('mouseover', (e) => {
-                if (e.target.closest('.metric-card')) {
-                    e.target.closest('.metric-card').style.zIndex = '10';
-                }
-            });
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('.metric-card')) {
+                e.target.closest('.metric-card').style.zIndex = '10';
+            }
+        });
 
-            document.addEventListener('mouseout', (e) => {
-                if (e.target.closest('.metric-card')) {
-                    e.target.closest('.metric-card').style.zIndex = '1';
-                }
-            });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('.metric-card')) {
+                e.target.closest('.metric-card').style.zIndex = '1';
+            }
         });
     </script>
 </body>
