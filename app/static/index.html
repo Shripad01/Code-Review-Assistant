@@ -926,6 +926,18 @@
     <!-- Monaco Editor -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
     <script>
+        // Configure API base URL for deployment:
+        // - Preferred: set a meta tag <meta name="api-base-url" content="https://your-service.onrender.com">
+        // - Or set via browser localStorage: localStorage.setItem('API_BASE_URL', 'https://your-service.onrender.com')
+        // - Fallback: empty string uses same-origin (works when frontend served by backend)
+        (function() {
+            const meta = document.querySelector('meta[name="api-base-url"]');
+            const fromMeta = meta ? meta.getAttribute('content') : '';
+            const fromStorage = localStorage.getItem('API_BASE_URL') || '';
+            window.API_BASE_URL = fromMeta || fromStorage || '';
+        })();
+    </script>
+    <script>
         // Global variables
         let editor = null;
         let currentCode = '';
@@ -1188,7 +1200,8 @@
             submitBtn.innerHTML = '<span class="loading"></span>Analyzing...';
 
             try {
-                const response = await fetch('/review/', {
+                const apiBase = (window.API_BASE_URL || '').replace(/\/$/, '');
+                const response = await fetch(`${apiBase}/review/`, {
                     method: 'POST',
                     body: formData,
                 });
